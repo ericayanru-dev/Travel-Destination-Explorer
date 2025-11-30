@@ -1,0 +1,33 @@
+{
+  "name": "travel-destination-explorer",
+  "version": "1.0.0",
+  "description": "Travel Destination Explorer final project for WDD330",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build --emptyOutDir",
+    "lint": "eslint src/scripts/**/*.js",
+    "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericayanru-dev/Travel-Destination-Explorer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericayanru-dev/Travel-Destination-Explorer/issues"
+  },
+  "homepage": "https://github.com/ericayanru-dev/Travel-Destination-Explorer#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "globals": "^16.5.0",
+    "prettier": "^3.7.3",
+    "vite": "^7.2.4"
+  }
+}
