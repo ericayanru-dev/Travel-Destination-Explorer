@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="scripts/results.js"></script>
+    <link rel="stylesheet" href="styles/small.css">
+    <link rel="stylesheet" href="styles/large.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+    <h1>Search Results</h1>
+    <a href="index.html">Back to Home</a>
+  </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover Your Next Adventure</h1>
+                <p>Explore destinations around the world with stunning images and maps.</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a city or country">
+                <button id="searchBtn">Search</button>
+            </div>
+        </section>
+        <section class="featured-destinations">
+            <h1>Results</h1>
+            <section>
+                <h2 id="searchTitle"></h2>
+                <div id="map" style="height: 300px;"></div>
+                <section id="gallery" class="gallery-container"></section>
+                <!-- Destination cards will be inserted here dynamically -->
+            </div>
+            </section>
+        </section>
+
+    </main>
+    <footer>
+
+    </body>
+</html>
