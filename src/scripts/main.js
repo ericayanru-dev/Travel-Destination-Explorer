@@ -8,7 +8,7 @@ document.getElementById("searchBtn").addEventListener("click", () => {
     if (query === "") return alert("Please enter a destination.");
 
     // Redirect to results page with search parameter
-    window.location.href = `/results.html?search=${encodeURIComponent(query)}`;
+    window.location.href = `./results.html?search=${encodeURIComponent(query)}`;
 });
 
 

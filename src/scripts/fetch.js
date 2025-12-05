@@ -19,7 +19,7 @@ function displayPhotos(results, id, query) {
 
   results.forEach(photo => {
     const link = document.createElement("a")
-    link.href = `destination.html?destination=${encodeURIComponent(photo.id)}&location=${encodeURIComponent(query)}`;
+    link.href = `./destination.html?destination=${encodeURIComponent(photo.id)}&location=${encodeURIComponent(query)}`;
     const card = document.createElement("div");
         card.classList.add("result-card");
 
