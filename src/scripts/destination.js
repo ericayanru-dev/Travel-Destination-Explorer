@@ -1,6 +1,6 @@
 import { homeUnsplash } from "./utility.js";
-import { geocode, addMarker } from "./fetch.js";
-import { initializeMap } from "./map.js";
+import { geocode } from "./fetch.js";
+import { initializeMap, addMarker  } from "./map.js";
 
 const titleEl = document.getElementById("destinationTitle");
 const galleryEl = document.getElementById("gallery");
