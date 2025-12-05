@@ -2,18 +2,17 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  root: "src",
-
+  base: "/Travel-Destination-Explorer/", // <-- for GitHub Pages
+  root: "src/",
   build: {
     outDir: "../dist",
-
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
-        about: resolve(__dirname, "src/about.html"),
-        results: resolve(__dirname, "src/results.html"),
-        favorites: resolve(__dirname, "src/favorites.html"),
-        destination: resolve(__dirname, "src/destination.html"),
+        cart: resolve(__dirname, "src/about.html"),
+        checkout: resolve(__dirname, "src/results.html"),
+        product: resolve(__dirname, "src/favorites.html"),
+        productListing: resolve(__dirname, "src/destination.html"),
       },
     },
   },
