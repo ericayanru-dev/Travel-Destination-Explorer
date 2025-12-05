@@ -2,8 +2,8 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/Travel-Destination-Explorer/", // <-- for GitHub Pages
   root: "src/",
+  base: "/", // <- This is important for static hosting
   build: {
     outDir: "../dist",
     rollupOptions: {
@@ -12,7 +12,7 @@ export default defineConfig({
         cart: resolve(__dirname, "src/about.html"),
         checkout: resolve(__dirname, "src/results.html"),
         product: resolve(__dirname, "src/favorites.html"),
-        productListing: resolve(__dirname, "src/destination.html"),
+        productListing: resolve(__dirname, 'src/destination.html'),
       },
     },
   },
