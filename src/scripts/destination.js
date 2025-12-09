@@ -1,47 +1,64 @@
-import { homeUnsplash } from "./utility.js";
+import { setLocalStorage, getLocalStorage } from "./utility.js";
 import { geocode } from "./fetch.js";
-import { initializeMap, addMarker  } from "./map.js";
+import { initializeMap, addMarker } from "./map.js";
 
-const titleEl = document.getElementById("destinationTitle");
-const galleryEl = document.getElementById("gallery");
-const infoEl = document.getElementById("destinationInfo");
+const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 
-// Get ?destination=Lagos
+// Get query parameters
 const params = new URLSearchParams(window.location.search);
-const destination = params.get("destination") || "Unknown";
+const id = params.get("id");
+const locationName = params.get("location");
 
-titleEl.textContent = destination;
+// Set title
+document.getElementById("destination-title").textContent = locationName;
 
-//  Load Unsplash photos
-async function loadGallery() {
-    const images = await homeUnsplash(destination);
+// Load photo by matching ID
+async function loadPhotos() {
+    const url = `https://api.unsplash.com/search/photos?query=${locationName}&client_id=${UNSPLASH_KEY}`;
 
-    galleryEl.innerHTML = ""; 
-    images.forEach(url => {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const photos = data.results;
+    const gallery = document.getElementById("gallery-grid");
+    gallery.innerHTML = "";
+
+    const image = photos.find(p => p.id === id);
+
+    if (image) {
         const img = document.createElement("img");
-        img.src = url;
-        galleryEl.appendChild(img);
-    });
+        img.src = image.urls.small;
+        img.alt = image.alt_description || "Destination Image";
+        gallery.appendChild(img);
+    }
 }
 
-// Load Mapbox Map
-async function loadMap() {
-    const { lng, lat } = await geocode(destination);
+loadPhotos();
 
-    const map = initializeMap("map", [lng, lat], 10);
-    addMarker(map, [lng, lat], destination);
-}
+// Load and center map
+const location = await geocode(locationName);
+const map = initializeMap("map", location, 9);
+addMarker(map, location);
 
-//  Dummy info text
-function loadInfo() {
-    infoEl.textContent = `${destination} is a popular travel destination known for its culture, attractions, and unique experiences.`;
-}
+// Example description
+document.getElementById("destination-description").textContent =
+    `${locationName} is a beautiful destination offering unique experiences.`;
 
-// ❗ Favorite Button
-document.getElementById("favBtn").addEventListener("click", () => {
-    alert(`${destination} added to favorites!`);
+// ⭐ Add to Favorites
+document.getElementById("favorite-btn").addEventListener("click", () => {
+    const product = { id, location: locationName };
+
+    // Always an array
+    let favorites = getLocalStorage("favorites") || [];
+
+    // Check if already saved
+    const exists = favorites.find(item => item.id === id);
+
+    if (!exists) {
+        favorites.push(product);
+    }
+
+    setLocalStorage("favorites", favorites);
+
+    alert(`${locationName} added to favorites!`);
 });
-
-loadGallery();
-loadMap();
-loadInfo();
