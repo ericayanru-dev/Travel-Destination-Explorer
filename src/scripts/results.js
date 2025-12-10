@@ -1,12 +1,25 @@
 // main.js
 import { searchUnsplash, geocode } from "./fetch.js";
 import { initializeMap, addMarker } from "./map.js";
+import { footer } from "./utility.js";
 
 
 const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
 
 let mapInstance = initializeMap(); // default global map
+
+document.addEventListener("DOMContentLoaded", () => {
+    const menu = document.getElementById("mobile-menu");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (!menu || !navLinks) return;
+
+    menu.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+    });
+});
+
 
 searchBtn.addEventListener("click", async () => {
     const query = searchInput.value;
@@ -40,4 +53,6 @@ const params = new URLSearchParams(window.location.search);
 
 // Get the value of ?search=
 const query = params.get("search");
-display(query)
+display(query);
+
+footer();

@@ -26,6 +26,7 @@ function displayPhotos(results, id, query) {
         const img = document.createElement("img");
         img.src = photo.urls.small;
         img.alt = photo.alt_description || "Image";
+        img.loading = "lazy";
 
         const title = document.createElement("h3");
         title.classList.add("result-title");

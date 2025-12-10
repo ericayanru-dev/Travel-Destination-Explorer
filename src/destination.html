@@ -10,9 +10,20 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet"/>
 </head>
 <body>
-    <header>
-    <a href="index.html">Back to Home</a>
-  </header>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">Travel Explorer</a></div>
+
+            <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="results.html">Explore</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+            <li><a href="about.html">About</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+        </nav>
+    </header>
 
     <main class="details-container">
         <h1 id="destination-title">Loading...</h1>

@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utility.js";
+import { setLocalStorage, getLocalStorage, remove, returnApiArray } from "./utility.js";
 import { geocode } from "./fetch.js";
 import { initializeMap, addMarker } from "./map.js";
 
@@ -13,13 +13,19 @@ const locationName = params.get("location");
 document.getElementById("destination-title").textContent = locationName;
 
 // Load photo by matching ID
-async function loadPhotos() {
-    const url = `https://api.unsplash.com/search/photos?query=${locationName}&client_id=${UNSPLASH_KEY}`;
 
-    const res = await fetch(url);
-    const data = await res.json();
+document.addEventListener("DOMContentLoaded", () => {
+    const menu = document.getElementById("mobile-menu");
+    const navLinks = document.querySelector(".nav-links");
 
-    const photos = data.results;
+    if (!menu || !navLinks) return;
+
+    menu.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+    });
+});
+
+    const photos = await returnApiArray(locationName)
     const gallery = document.getElementById("gallery-grid");
     gallery.innerHTML = "";
 
@@ -31,34 +37,44 @@ async function loadPhotos() {
         img.alt = image.alt_description || "Destination Image";
         gallery.appendChild(img);
     }
-}
-
-loadPhotos();
 
 // Load and center map
 const location = await geocode(locationName);
-const map = initializeMap("map", location, 9);
+const map = initializeMap("map", location, 10);
 addMarker(map, location);
 
 // Example description
 document.getElementById("destination-description").textContent =
     `${locationName} is a beautiful destination offering unique experiences.`;
 
+
+
 // ⭐ Add to Favorites
 document.getElementById("favorite-btn").addEventListener("click", () => {
-    const product = { id, location: locationName };
-
+  const favBtn = document.querySelector("#favorite-btn");
     // Always an array
     let favorites = getLocalStorage("favorites") || [];
 
     // Check if already saved
     const exists = favorites.find(item => item.id === id);
 
-    if (!exists) {
-        favorites.push(product);
+    if (exists) {
+         // REMOVE from favorites
+        favorites = remove(favorites, id, locationName, favBtn);
+    } else {
+        // ADD to favorites
+        favorites.push({ id, locationName });
+      alert(`${locationName} added to favorites!`);
+      favBtn.textContent =`Remove from Favorites`
+
     }
 
+    // Save updated list
     setLocalStorage("favorites", favorites);
 
-    alert(`${locationName} added to favorites!`);
+    // Update button text
+    updateFavoriteButton();
 });
+
+// Call this on load
+updateFavoriteButton();
