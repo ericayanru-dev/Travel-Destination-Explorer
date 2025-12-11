@@ -15,13 +15,22 @@ body {
     background-size: cover;
     background-position: center;
     height: 60vh;
-    display: flex;
-    align-items: center;
+    display: grid;
+    align-items: center ;
+    align-content: space-around;
     justify-content: center;
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: 0.5rem;
 }
+
+.hero h1{
+    font-size: 2rem;
+ }
+
+ .hero p{
+    font-size: 1rem;
+ }
 
 /* SEARCH BAR */
 .search-container {
@@ -45,6 +54,13 @@ body {
     border: none;
 }
 
+.featured-destinations h2{
+    margin-left: 1rem;
+}
+.visite{
+    text-align: center;
+    justify-content: center;
+}
 /* FEATURED GRID */
 .gallery-grid,
 .results-grid,
