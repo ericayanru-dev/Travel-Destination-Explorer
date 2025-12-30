@@ -3,30 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title>
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet"/>
-  <script type="module" crossorigin src="/Travel-Destination-Explorer/assets/productListing-j1eHuUtR.js"></script>
-  <link rel="modulepreload" crossorigin href="/Travel-Destination-Explorer/assets/large-3P8gANfg.js">
-  <link rel="modulepreload" crossorigin href="/Travel-Destination-Explorer/assets/utility-zs6gjdZ5.js">
-  <link rel="modulepreload" crossorigin href="/Travel-Destination-Explorer/assets/map-Cur-Oq4B.js">
-  <link rel="stylesheet" crossorigin href="/Travel-Destination-Explorer/assets/large-Dz1y64xQ.css">
+  <script type="module" crossorigin src="/assets/productListing-g02seO4A.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/large-DLUZwNSh.js">
+  <link rel="modulepreload" crossorigin href="/assets/map-CHuMvWae.js">
+  <link rel="stylesheet" crossorigin href="/assets/large-jxFqywvT.css">
 </head>
 <body>
-    <header>
-    <a href="index.html">Back to Home</a>
-  </header>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">Travel Explorer</a></div>
 
-    <main id="destination">
+            <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="results.html">Explore</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+            <li><a href="about.html">About</a></li>
+            </ul>
 
-        <h1 id="destinationTitle">Loading...</h1>
+            <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+        </nav>
+    </header>
 
-        <section id="gallery" class="gallery"></section>
+    <main class="details-container">
+        <h1 id="destination-title">Loading...</h1>
 
-        <section id="map" class="map-section"></section>
+    <!-- PHOTO GALLERY -->
+        <section class="gallery" id="photo-gallery">
+        <h2>Photo Gallery</h2>
+        <div class="gallery-grid" id="gallery-grid"></div>
+        </section>
 
-        <section id="destinationInfo" class="info-box"></section>
+        <!-- MAP SECTION -->
+        <section class="map-section">
+        <h2>Location</h2>
+        <div id="map"></div>
+        </section>
 
-        <button id="favoriteBtn">Add to Favorites ❤️</button>
+        <!-- INFO SECTION -->
+        <section class="info-section">
+        <h2>About this Destination</h2>
+        <p id="destination-description">Loading details...</p>
 
-    </main>
+        <button id="favorite-btn">❤️ Add to Favorites</button>
+        </section>
+
+  </main>
 </body>
+</html>

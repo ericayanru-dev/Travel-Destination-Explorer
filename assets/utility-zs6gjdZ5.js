@@ -1,1 +1,0 @@
-const t="_IKSaDhVM1V_ER5YnL7xbryY46qrj5dIXwJ6yQkTWKY";async function e(n){const o=`https://api.unsplash.com/search/photos?query=${n}&client_id=${t}`,s=await(await fetch(o)).json();return console.log(s),s.results[0]}export{e as h};
