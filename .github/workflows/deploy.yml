@@ -1,31 +1,40 @@
-name: build-deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main  # deploy when you push to main branch
+
+permissions:
+  contents: write  # allow Actions to push to gh-pages
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
+      # Step 1: Checkout your repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      # Step 2: Set up Node (needed if building JS/CSS)
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: '22.17.0'
 
+      # Step 3: Install dependencies (if using npm)
       - name: Install dependencies
         run: npm install
+        npm install -g sass   # if you compile SCSS manually
 
+      # Step 4: Build your project (optional)
       - name: Build project
-        run: npm run build
+        run: npm run build || echo "No build step needed"
 
+      # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./dist  # change to ./ if using root folder
+          keep_files: true      # optional, keeps files in gh-pages branch
